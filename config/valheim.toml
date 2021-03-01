@@ -1,0 +1,20 @@
+[server]
+  enabled = true
+  name = "Valheim Survival"
+  game = 'valheim'
+  ip = '162.254.201.255'
+  port = 30000
+  query_port = 30001
+  max_players = 10
+
+  [server.bot]
+    token = '${VALHEIM_BOT_TOKEN}'
+    color = '#A49A91'
+
+    [server.bot.status]
+      type = 'PLAYING'
+      players = true
+      map = false
+
+  [server.optional]
+    connect_url = 'https://definitivenetworksgmod.com/connect/steam/valheim'
