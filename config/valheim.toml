@@ -1,11 +1,11 @@
 [server]
   enabled = true
-  name = "Valheim Survival"
+  name = "Modded Valheim"
   game = 'valheim'
   ip = '162.254.201.255'
   port = 30000
   query_port = 30001
-  max_players = 10
+  max_players = 20
 
   [server.bot]
     token = '${VALHEIM_BOT_TOKEN}'
@@ -24,3 +24,4 @@
 
   [server.optional]
     connect_url = 'https://definitivenetworksgmod.com/connect/steam/valheim'
+    content_url = 'https://definitivenetworksgmod.com/content/valheim'
