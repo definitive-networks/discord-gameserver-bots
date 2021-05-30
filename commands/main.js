@@ -127,10 +127,11 @@ const options = {
     } else {
       let embed = new MessageEmbed().setColor(server.color);
       embed = commandEmbed(subCommand.name, embed, data);
-      interaction.sendEmbed({
-        ...(process.env.SHOW_USER_INPUT === 'false' && { content: `<@${request.member.user.id}>` }),
-        embed
-       }).catch(console.error);
+      if (process.env.SHOW_USER_INPUT === 'false') {
+        interaction.sendEmbed({ content: `<@${request.member.user.id}>`, embed }).catch(console.error);
+      } else {
+        interaction.sendEmbed({ embed }).catch(console.error);
+      }
     }
   }
 }
