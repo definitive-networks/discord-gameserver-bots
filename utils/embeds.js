@@ -46,16 +46,6 @@ module.exports = (command, embed, d) => {
         }
       }
       break;
-    case 'connect':
-      switch(true) {
-        case (d.cache.current_state === 'on' || d.cache.current_state === 'starting'):
-          embed.setAuthor(`Connect to ${d.serverBot.username}`, d.serverBot.displayAvatarURL(16), d.server.connectURL)
-            .setFooter("You'll be redirected to your browser, then Steam.")
-          break;
-        case (d.cache.current_state === 'off' || d.cache.current_state === 'stopping'):
-          embed.setAuthor(`Can't connect to ${d.serverBot.username} while it's offline.`, d.serverBot.displayAvatarURL(16))
-      }
-      break;
     default:
       embed.setAuthor("ERROR - This command doesn't exist yet!")
   }

@@ -2,6 +2,7 @@ require('dotenv').config();
 const jf = require('jsonfile');
 const Slash = require('da-slash');
 const { MessageEmbed } = require('discord.js');
+const { MessageButton } = require('discord-buttons');
 const { servers } = require('../bot.js');
 const commandEmbed = require('../utils/embeds.js');
 
@@ -116,21 +117,45 @@ const options = {
       cache: cache
     };
 
-    if (subCommand.name === 'discords') {
-      if (server.discords.filter(discord => discord.invite_code).length > 0) {
-        let discords = server.discords.filter(discord => discord.invite_code).map(discord => {
-          return `\n**${discord.name || server.name + ' Discord'}**\nhttps://discord.gg/${discord.invite_code}\n`
-        }).join('');
-        let mention = (process.env.SHOW_USER_INPUT === 'false') ? `<@${request.member.user.id}>\n` : '';
-        interaction.sendMessage(`${mention}${server.name} related Discords can be found below:\n${discords}`);
+    switch (subCommand.name) {
+      case 'discords': {
+        if (server.discords.filter(discord => discord.invite_code).length > 0) {
+          let discords = server.discords.filter(discord => discord.invite_code).map(discord => {
+            return `\n**${discord.name || server.name + ' Discord'}**\nhttps://discord.gg/${discord.invite_code}\n`
+          }).join('');
+          let mention = (process.env.SHOW_USER_INPUT === 'false') ? `<@${request.member.user.id}>\n` : '';
+          interaction.sendMessage(`${mention}${server.name} related Discords can be found below:\n${discords}`);
+        }
+        break;
       }
-    } else {
-      let embed = new MessageEmbed().setColor(server.color);
-      embed = commandEmbed(subCommand.name, embed, data);
-      if (process.env.SHOW_USER_INPUT === 'false') {
-        interaction.sendEmbed({ content: `<@${request.member.user.id}>`, embed }).catch(console.error);
-      } else {
-        interaction.sendEmbed({ embed }).catch(console.error);
+      case 'connect': {
+        let button = new MessageButton();
+        switch(true) {
+          case (d.cache.current_state === 'on' || d.cache.current_state === 'starting'):
+            button.setStyle('url')
+              .setURL(d.server.connectURL)
+              .setLabel(`Connect to ${d.serverBot.username}`);
+            break;
+          case (d.cache.current_state === 'off' || d.cache.current_state === 'stopping'):
+            button.setStyle('red')
+              .setLabel('Server Offline')
+              .setID('connect_button')
+              .setDisabled();
+        }
+        client.api.interactions(interaction.request.id, interaction.request.token).callback.post({
+          type: 4,
+          data: { button }
+        });
+        break;
+      }
+      default: {
+        let embed = new MessageEmbed().setColor(server.color);
+        embed = commandEmbed(subCommand.name, embed, data);
+        if (process.env.SHOW_USER_INPUT === 'false') {
+          interaction.sendEmbed({ content: `<@${request.member.user.id}>`, embed }).catch(console.error);
+        } else {
+          interaction.sendEmbed({ embed }).catch(console.error);
+        }
       }
     }
   }

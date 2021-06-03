@@ -15,13 +15,13 @@
       type = 'PLAYING'
       players = true
       map = false
-      
+
   [server.api]
     enabled = false
-    
+
   [server.pterodactyl]
     enabled = false
 
   [server.optional]
-    connect_url = 'https://definitivenetworksgmod.com/connect/steam/valheim'
+    connect_url = 'steam://connect/162.254.201.255:30001'
     content_url = 'https://definitivenetworksgmod.com/content/valheim'

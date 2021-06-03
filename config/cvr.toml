@@ -27,7 +27,7 @@
     api_key = '${PTERO_KEY}'
 
   [server.optional]
-    connect_url = 'https://definitivenetworksgmod.com/connect/steam/cvr'
+    connect_url = 'steam://connect/66.23.200.120:27015'
     rules_url = 'https://definitivenetworksgmod.com/rules#cvr'
     content_url = 'https://steamcommunity.com/sharedfiles/filedetails/?id=1371896741'
     discords = [
