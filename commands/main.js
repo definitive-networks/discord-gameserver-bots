@@ -147,7 +147,7 @@ const options = {
             components: [
               {
                 type: 1,
-                components: button
+                components: [ button ]
               }
             ]
           }
