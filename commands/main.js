@@ -130,20 +130,19 @@ const options = {
       }
       case 'connect': {
         let button = new MessageButton();
-        switch(true) {
-          case (cache.current_state === 'on' || cache.current_state === 'starting'):
-            button.setStyle('url')
-              .setURL(server.connectURL)
-              .setLabel(`Connect to ${serverBot.username}`);
-            break;
-          case (cache.current_state === 'off' || cache.current_state === 'stopping'):
-            button.setStyle('red')
-              .setLabel('Server Offline')
-              .setID('connect_button')
-              .setDisabled();
+        if (cache.current_state === 'on' || cache.current_state === 'starting') {
+          button.setStyle('url')
+            .setURL(server.connectURL)
+            .setLabel(`Connect to ${serverBot.username}`);
+        } (cache.current_state === 'off' || cache.current_state === 'stopping') {
+          button.setStyle('red')
+            .setLabel('Server Offline')
+            .setID('connect_button')
+            .setDisabled();
         }
-        client.api.channels[interaction.request.channel_id].messages.post({
-          headers: { 'Content-Type': 'applications/json' },
+        console.log(button);
+        client.api.interactions(interaction.request.id, interaction.request.token).callback.post({
+          type: 4,
           data: { button }
         });
         break;
