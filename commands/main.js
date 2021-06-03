@@ -142,16 +142,9 @@ const options = {
               .setID('connect_button')
               .setDisabled();
         }
-        client.api.interactions(interaction.request.id, interaction.request.token).callback.post({
-          type: 4,
-          data: {
-            components: [
-              {
-                type: 1,
-                components: [ button ]
-              }
-            ]
-          }
+        client.api.channels[interaction.request.channel_id].messages.post({
+          headers: { 'Content-Type': 'applications/json' },
+          data: { button }
         });
         break;
       }
