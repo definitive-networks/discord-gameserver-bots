@@ -29,7 +29,7 @@
     "da-slash": "git+https://github.com/fasko-web/da-slash.git",
     "discord-buttons": "^3.1.1",
     "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "env-subst": "^1.0.3",
     "gamedig": "^3.0.0",
     "human-interval": "^2.0.1",
