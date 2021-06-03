@@ -143,6 +143,7 @@ const options = {
               .setDisabled();
         }
         client.api.interactions(interaction.request.id, interaction.request.token).callback.post({
+          type: 4,
           data: {
             components: [
               {
