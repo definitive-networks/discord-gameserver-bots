@@ -141,8 +141,8 @@ const options = {
             .setDisabled();
         }
         console.log(button);
-        client.api.interactions(interaction.request.id, interaction.request.token).callback.post({
-          type: 4,
+        client.api.channels[interaction.request.channel_id].messages.post({
+          headers: { 'Content-Type': 'applications/json' },
           data: { button }
         });
         break;
