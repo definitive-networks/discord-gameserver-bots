@@ -142,10 +142,7 @@ const options = {
               .setID('connect_button')
               .setDisabled();
         }
-        client.api.interactions(interaction.request.id, interaction.request.token).callback.post({
-          type: 4,
-          data: { button }
-        });
+        client.api.interactions(interaction.request.id, interaction.request.token).callback.post({ button });
         break;
       }
       default: {
