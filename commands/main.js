@@ -131,12 +131,12 @@ const options = {
       case 'connect': {
         let button = new MessageButton();
         switch(true) {
-          case (d.cache.current_state === 'on' || d.cache.current_state === 'starting'):
+          case (cache.current_state === 'on' || cache.current_state === 'starting'):
             button.setStyle('url')
-              .setURL(d.server.connectURL)
-              .setLabel(`Connect to ${d.serverBot.username}`);
+              .setURL(server.connectURL)
+              .setLabel(`Connect to ${serverBot.username}`);
             break;
-          case (d.cache.current_state === 'off' || d.cache.current_state === 'stopping'):
+          case (cache.current_state === 'off' || cache.current_state === 'stopping'):
             button.setStyle('red')
               .setLabel('Server Offline')
               .setID('connect_button')
