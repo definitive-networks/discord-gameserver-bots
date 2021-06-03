@@ -134,7 +134,7 @@ const options = {
           button.setStyle('url')
             .setURL(server.connectURL)
             .setLabel(`Connect to ${serverBot.username}`);
-        } (cache.current_state === 'off' || cache.current_state === 'stopping') {
+        } else if (cache.current_state === 'off' || cache.current_state === 'stopping') {
           button.setStyle('red')
             .setLabel('Server Offline')
             .setID('connect_button')
